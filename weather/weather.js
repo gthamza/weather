@@ -1,3 +1,22 @@
+async function fetchWeatherByGeoposition(latitude, longitude, displayFunction) {
+    const url = `https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?lat=${latitude}&lon=${longitude}`;
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '72a5d188dcmsh3cfa9347e935675p16584cjsne16cfdc22c1a',
+            'X-RapidAPI-Host': 'weather-by-api-ninjas.p.rapidapi.com'
+        }
+    };
+
+    try {
+        const response = await fetch(url, options);
+        const data = await response.json();
+        displayFunction(data);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 async function fetchData() {
     const submit = document.getElementById('submit');
     const cityInput = document.getElementById('city');
@@ -23,7 +42,7 @@ async function fetchData() {
 
     function displayWeatherData(data, city) {
         const capitalizeFirstLetter = (string) => {
-            return string.charAt(0).toUpperCase() + string.slice(1);
+            return string ? string.charAt(0).toUpperCase() + string.slice(1) : '';
         };
 
         document.getElementById('cityname').textContent = capitalizeFirstLetter(city);
@@ -47,6 +66,20 @@ async function fetchData() {
         const cityValue = cityInput.value;
         await fetchWeather(cityValue);
     });
+
+    async function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(async (position) => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                await fetchWeatherByGeoposition(latitude, longitude, displayWeatherData);
+            });
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    }
+
+    getLocation(); // Call getLocation to get user's geolocation
 
     const otherCities = [
         { name: 'Delhi', id: 'delhi-data' },
