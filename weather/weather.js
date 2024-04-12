@@ -79,7 +79,7 @@ async function fetchData() {
         }
     }
 
-    getLocation(); // Call getLocation to get user's geolocation
+    getLocation(); 
 
     const otherCities = [
         { name: 'Delhi', id: 'delhi-data' },

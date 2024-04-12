@@ -115,34 +115,34 @@
     }
 }
 body {
-    background-image: url('weather.png'); /* Specify the path to your background image */
-    background-size: cover; /* Cover the entire viewport */
-    background-repeat: no-repeat; /* Do not repeat the background image */
-    color: #333; /* Dark gray text color */
+    background-image: url('weather.png'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    color: #333; 
 }
 
 .navbar {
-    background-color: #4e4e4e; /* Dark gray background for navbar */
-    color: #fff; /* White text color for navbar */
+    background-color: #4e4e4e; 
+    color: #fff; 
 }
 
 .navbar-toggler-icon {
-    background-color: #fff; /* White background color for toggler icon */
+    background-color: #fff; 
 }
 
 .future-forecast {
-    background-color: #f0f0f0; /* Light gray background for weather of other cities */
-    padding: 20px; /* Add some padding for better readability */
-    margin-top: 20px; /* Add margin at the top */
+    background-color: #f0f0f0; 
+    padding: 20px; 
+    margin-top: 20px; 
 }
 
 .weather-forecast-item {
-    border: 1px solid #ccc; /* Add border to each forecast item */
-    border-radius: 5px; /* Add border radius for rounded corners */
-    margin-bottom: 10px; /* Add some space between forecast items */
-    padding: 10px; /* Add padding for better spacing */
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    margin-bottom: 10px; 
+    padding: 10px; 
 }
 
 .weather-forecast-item img {
-    max-width: 50px; /* Limit the max width of weather icons */
+    max-width: 50px; 
 }
