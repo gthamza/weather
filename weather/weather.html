@@ -1,42 +1,40 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <!-- Your head content goes here -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Weather App</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">"
    <link rel="stylesheet" href="weather.css">
    <style>
-        /* Custom CSS to align the weather table and places in one line */
         .table-responsive {
             display: inline-block;
-            width: calc(100% - 300px); /* Adjust the width as needed */
+            width: calc(100% - 300px); 
             vertical-align: top;
         }
         .places-table {
             display: inline-block;
-            width: 350px; /* Adjust the width as needed */
+            width: 350px; 
             vertical-align: top;
-            margin-left: 40px; /* Add some space between the tables */
+            margin-left: 40px; 
         }
 
-        /* Background image style */
+    
         body {
-            background-image: url('weather.png'); /* Specify the path to your background image */
-            background-size: cover; /* Cover the entire viewport */
-            background-repeat: no-repeat; /* Do not repeat the background image */
+            background-image: url('weather.png'); 
+            background-size: cover; 
+            background-repeat: no-repeat; 
         }
 
-        /* Style for the search bar */
+        
         .form-control.search-bar {
-            border-radius: 20px; /* Rounded corners */
-            background-color: #ffffff; /* Contrasting background color */
-            border: none; /* Remove default border */
-            padding-right: 38px; /* Space for magnifying glass icon */
+            border-radius: 20px; 
+            background-color: #ffffff; 
+            border: none; 
+            padding-right: 38px; 
         }
 
-        /* Style for the magnifying glass icon */
+    
         .search-icon {
             position: absolute;
             right: 12px;
@@ -48,7 +46,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
-    <!-- Your navigation bar content goes here -->
+
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Weather</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,7 +87,7 @@
                 </div>
                 <button class="btn btn-outline-success" type="submit" id="submit">Search</button>
             </form>
-            <!-- Remove the extra form tag here -->
+    
             <div id="searchForm"></div>    
             </form>
         </div>
@@ -97,7 +95,7 @@
 </nav>
 
 <div class="container">
-    <!-- Your container content goes here -->
+
     <h2 id="weatherForCity" class="my-4  text-center">Weather for <span id="cityname">city</span></h2>
     <main>
         <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
@@ -183,12 +181,11 @@
 </div>
 
 <div class="future-forecast">
-    <!-- Your future weather forecast content goes here -->
     <h2 class="text-center mb-4">Future Weather Forecast</h2>
     <div class="weather-forecast" id="future-weather-forecast">
-        <!-- Future weather forecast items will be dynamically added here -->
+    
         <div class="today" id="current-temp">
-            <!-- Current weather will be displayed here -->
+
             <img src="http://openweathermap.org/img/wn//01d@4x.png" alt="weather icon" class="w-icon">
             <div class="other">
                 <div class="day">Thursday</div>
@@ -199,7 +196,7 @@
 
         </div>
         <div class="weather-forecast" id="weather-forecast">
-            <!-- Weather forecast for future days will be displayed here -->
+    
             <div class="weather-forecast" id="weather-forecast">
                 <div class="weather-forecast-item">
                     <div class="day">Fri</div>
