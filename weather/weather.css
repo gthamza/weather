@@ -148,9 +148,11 @@ body {
 }
 .table-responsive {
     display: inline-block;
-    width: calc(100% - 300px); 
+    width: calc(100% - 300px);
     vertical-align: top;
+    overflow: hidden; /* Hide the scroll bar */
 }
+
 .places-table {
     display: inline-block;
     width: 350px; 
@@ -220,6 +222,55 @@ body {
     color: #fff; /* Set text color to white on hover */
     background-color: #000; /* Set background color to black on hover */
     border-color: #000; /* Set border color to black on hover */
+}
+/* Style for the table background */
+.table {
+    background-color: rgba(0, 0, 0, 0.05); /* Set light black background color */
+}
+
+/* Style for the table header */
+.table thead th {
+    background-color: rgba(0, 0, 0, 0.1); /* Set light black background color for header */
+    color: #333; /* Set text color */
+    font-weight: bold; /* Make text bold */
+}
+
+/* Style for table rows */
+.table tbody tr {
+    background-color: #fff; /* Set background color */
+}
+
+/* Style for alternating table rows */
+.table tbody tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.02); /* Set light black background color for even rows */
+}
+
+/* Style for table cells */
+.table tbody td {
+    color: #333; /* Set text color */
+}
+
+/* Style for table borders */
+.table {
+    border-collapse: collapse; /* Collapse table borders */
+    width: 100%; /* Set table width */
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Set light black border color */
+}
+
+/* Style for table header cells */
+.table th,
+.table td {
+    padding: 8px; /* Add padding */
+    text-align: center; /* Center-align text */
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Set light black border color */
+}
+
+/* Style for table header cells on smaller screens */
+@media only screen and (max-width: 768px) {
+    .table th,
+    .table td {
+        font-size: 12px; /* Reduce font size for smaller screens */
+    }
 }
 
 
