@@ -203,73 +203,71 @@ body {
 .weather-forecast-item img {
     max-width: 50px; 
 }
-/* Navbar background image */
+
 .navbar {
-    background-image: url('weather.png'); /* Replace 'navbar-background.jpg' with your image URL */
-    background-size: cover; /* Adjust as needed */
-    background-repeat: no-repeat; /* Adjust as needed */
+    background-image: url('weather.png');
+    background-size: cover; 
+    background-repeat: no-repeat;
     color: #fff;
 }
 
-/* Style for the search button */
+
 .btn-outline-success {
-    color: #000; /* Set text color to black */
-    border-color: #000; /* Set border color to black */
+    color: #000; 
+    border-color: #000; 
 }
 
-/* Hover state for the search button */
+
 .btn-outline-success:hover {
-    color: #fff; /* Set text color to white on hover */
-    background-color: #000; /* Set background color to black on hover */
-    border-color: #000; /* Set border color to black on hover */
-}
-/* Style for the table background */
-.table {
-    background-color: rgba(0, 0, 0, 0.05); /* Set light black background color */
+    color: #fff; 
+    background-color: #000; 
+    border-color: #000; 
 }
 
-/* Style for the table header */
+.table {
+    background-color: rgba(0, 0, 0, 0.05); 
+}
+
+
 .table thead th {
-    background-color: rgba(0, 0, 0, 0.1); /* Set light black background color for header */
-    color: #333; /* Set text color */
-    font-weight: bold; /* Make text bold */
+    background-color: rgba(0, 0, 0, 0.1); 
+    color: #333; 
+    font-weight: bold; 
 }
 
-/* Style for table rows */
+
 .table tbody tr {
-    background-color: #fff; /* Set background color */
+    background-color: #fff; 
 }
 
-/* Style for alternating table rows */
+
 .table tbody tr:nth-child(even) {
-    background-color: rgba(0, 0, 0, 0.02); /* Set light black background color for even rows */
+    background-color: rgba(0, 0, 0, 0.02); 
 }
 
-/* Style for table cells */
+
 .table tbody td {
-    color: #333; /* Set text color */
+    color: #333; 
 }
 
-/* Style for table borders */
+
 .table {
-    border-collapse: collapse; /* Collapse table borders */
-    width: 100%; /* Set table width */
-    border: 1px solid rgba(0, 0, 0, 0.1); /* Set light black border color */
+    border-collapse: collapse; 
+    width: 100%; 
+    border: 1px solid rgba(0, 0, 0, 0.1); 
 }
 
-/* Style for table header cells */
-.table th,
 .table td {
-    padding: 8px; /* Add padding */
-    text-align: center; /* Center-align text */
-    border: 1px solid rgba(0, 0, 0, 0.1); /* Set light black border color */
+    padding: 8px; 
+    text-align: center; 
+    border: 1px solid rgba(0, 0, 0, 0.1); 
 }
 
-/* Style for table header cells on smaller screens */
+
 @media only screen and (max-width: 768px) {
     .table th,
     .table td {
-        font-size: 12px; /* Reduce font size for smaller screens */
+        font-size: 12px; 
     }
 }
 

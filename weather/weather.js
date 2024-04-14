@@ -118,8 +118,6 @@ async function fetchData() {
                 <td>${otherCityData.wind_degrees}</td>
                 <td>${otherCityData.sunrise}</td>
                 <td>${otherCityData.sunrise}</td>
-
-
             `;
 
             dataElement.innerHTML += cityRow;
