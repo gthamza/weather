@@ -146,3 +146,81 @@ body {
 .weather-forecast-item img {
     max-width: 50px; 
 }
+.table-responsive {
+    display: inline-block;
+    width: calc(100% - 300px); 
+    vertical-align: top;
+}
+.places-table {
+    display: inline-block;
+    width: 350px; 
+    vertical-align: top;
+    margin-left: 40px; 
+}
+
+
+body {
+    background-image: url('weather.png'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+}
+
+
+.form-control.search-bar {
+    border-radius: 20px; 
+    background-color: #ffffff; 
+    border: none; 
+    padding-right: 38px; 
+}
+
+
+.search-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+.future-forecast {
+    background-image: url('weather.png'); /* Background image URL */
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    padding: 20px; 
+    margin-top: 20px; 
+}
+
+.weather-forecast-item {
+    background-image: url('weather.png'); /* Background image URL */
+    background-size: cover; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    margin-bottom: 10px; 
+    padding: 10px; 
+}
+
+.weather-forecast-item img {
+    max-width: 50px; 
+}
+/* Navbar background image */
+.navbar {
+    background-image: url('weather.png'); /* Replace 'navbar-background.jpg' with your image URL */
+    background-size: cover; /* Adjust as needed */
+    background-repeat: no-repeat; /* Adjust as needed */
+    color: #fff;
+}
+
+/* Style for the search button */
+.btn-outline-success {
+    color: #000; /* Set text color to black */
+    border-color: #000; /* Set border color to black */
+}
+
+/* Hover state for the search button */
+.btn-outline-success:hover {
+    color: #fff; /* Set text color to white on hover */
+    background-color: #000; /* Set background color to black on hover */
+    border-color: #000; /* Set border color to black on hover */
+}
+
+
+
