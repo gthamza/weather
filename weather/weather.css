@@ -146,9 +146,139 @@ body {
 .weather-forecast-item img {
     max-width: 50px; 
 }
+<<<<<<< HEAD
 .weather-forecast {
     background-image: url('weather.png');
     background-size: cover;
     background-repeat: no-repeat;
     padding: 20px; /* Add padding for better readability */
 }
+=======
+.table-responsive {
+    display: inline-block;
+    width: calc(100% - 300px);
+    vertical-align: top;
+    overflow: hidden; /* Hide the scroll bar */
+}
+
+.places-table {
+    display: inline-block;
+    width: 350px; 
+    vertical-align: top;
+    margin-left: 40px; 
+}
+
+
+body {
+    background-image: url('weather.png'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+}
+
+
+.form-control.search-bar {
+    border-radius: 20px; 
+    background-color: #ffffff; 
+    border: none; 
+    padding-right: 38px; 
+}
+
+
+.search-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+.future-forecast {
+    background-image: url('weather.png'); /* Background image URL */
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    padding: 20px; 
+    margin-top: 20px; 
+}
+
+.weather-forecast-item {
+    background-image: url('weather.png'); /* Background image URL */
+    background-size: cover; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    margin-bottom: 10px; 
+    padding: 10px; 
+}
+
+.weather-forecast-item img {
+    max-width: 50px; 
+}
+
+.navbar {
+    background-image: url('weather.png');
+    background-size: cover; 
+    background-repeat: no-repeat;
+    color: #fff;
+}
+
+
+.btn-outline-success {
+    color: #000; 
+    border-color: #000; 
+}
+
+
+.btn-outline-success:hover {
+    color: #fff; 
+    background-color: #000; 
+    border-color: #000; 
+}
+
+.table {
+    background-color: rgba(0, 0, 0, 0.05); 
+}
+
+
+.table thead th {
+    background-color: rgba(0, 0, 0, 0.1); 
+    color: #333; 
+    font-weight: bold; 
+}
+
+
+.table tbody tr {
+    background-color: #fff; 
+}
+
+
+.table tbody tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.02); 
+}
+
+
+.table tbody td {
+    color: #333; 
+}
+
+
+.table {
+    border-collapse: collapse; 
+    width: 100%; 
+    border: 1px solid rgba(0, 0, 0, 0.1); 
+}
+
+.table td {
+    padding: 8px; 
+    text-align: center; 
+    border: 1px solid rgba(0, 0, 0, 0.1); 
+}
+
+
+@media only screen and (max-width: 768px) {
+    .table th,
+    .table td {
+        font-size: 12px; 
+    }
+}
+
+
+
+>>>>>>> 3336bed031b8bc5e31eab26cba99211528e8a4ab
