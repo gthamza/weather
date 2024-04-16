@@ -146,3 +146,9 @@ body {
 .weather-forecast-item img {
     max-width: 50px; 
 }
+.weather-forecast {
+    background-image: url('weather.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 20px; /* Add padding for better readability */
+}
