@@ -146,14 +146,13 @@ body {
 .weather-forecast-item img {
     max-width: 50px; 
 }
-<<<<<<< HEAD
+
 .weather-forecast {
     background-image: url('weather.png');
     background-size: cover;
     background-repeat: no-repeat;
     padding: 20px; /* Add padding for better readability */
 }
-=======
 .table-responsive {
     display: inline-block;
     width: calc(100% - 300px);
@@ -271,14 +270,8 @@ body {
     border: 1px solid rgba(0, 0, 0, 0.1); 
 }
 
-
 @media only screen and (max-width: 768px) {
     .table th,
     .table td {
         font-size: 12px; 
     }
-}
-
-
-
->>>>>>> 3336bed031b8bc5e31eab26cba99211528e8a4ab
