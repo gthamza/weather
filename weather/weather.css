@@ -283,3 +283,15 @@ body {
 .weather-forecast-item img {
     max-width: 50px; 
 }
+.weather-forecast-item {
+    position: relative; /* Add position relative for absolute positioning */
+    transition: transform 0.3s; /* Add transition for smooth effect */
+}
+
+.weather-forecast-item:hover {
+    transform: translateY(-10px); /* Apply translateY on hover */
+}
+
+.weather-forecast-item:hover img {
+    transform: translate(-5px, -10px) rotate(-5deg) scale(1.1); /* Adjust the image transformation on hover */
+}

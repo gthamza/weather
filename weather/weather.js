@@ -1,5 +1,6 @@
 var currentIndex;
 
+
 async function getWeatherData(locationName, latitude, longitude) {
     try {
         let location;
