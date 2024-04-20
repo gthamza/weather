@@ -151,13 +151,13 @@ body {
     background-image: url('weather.png');
     background-size: cover;
     background-repeat: no-repeat;
-    padding: 20px; /* Add padding for better readability */
+    padding: 20px; 
 }
 .table-responsive {
     display: inline-block;
     width: calc(100% - 300px);
     vertical-align: top;
-    overflow: hidden; /* Hide the scroll bar */
+    overflow: hidden; 
 }
 
 .places-table {
@@ -258,40 +258,40 @@ body {
 }
 
 .future-forecast {
-    background-image: url('weather.png'); /* Background image URL */
+    background-image: url('weather.png'); 
     background-size: cover; 
     background-repeat: no-repeat; 
     padding: 20px; 
     margin-top: 20px; 
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    justify-content: center; 
+    align-items: center; 
 }
 
 .weather-forecast-item {
-    background-image: url('weather.png'); /* Background image URL */
+    background-image: url('weather.png'); 
     background-size: cover; 
     border: 1px solid #ccc; 
     border-radius: 5px; 
     margin-bottom: 10px; 
     padding: 10px; 
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    justify-content: center; 
+    align-items: center; 
 }
 
 .weather-forecast-item img {
     max-width: 50px; 
 }
 .weather-forecast-item {
-    position: relative; /* Add position relative for absolute positioning */
-    transition: transform 0.3s; /* Add transition for smooth effect */
+    position: relative; 
+    transition: transform 0.3s; 
 }
 
 .weather-forecast-item:hover {
-    transform: translateY(-10px); /* Apply translateY on hover */
+    transform: translateY(-10px); 
 }
 
 .weather-forecast-item:hover img {
-    transform: translate(-5px, -10px) rotate(-5deg) scale(1.1); /* Adjust the image transformation on hover */
+    transform: translate(-5px, -10px) rotate(-5deg) scale(1.1); 
 }
