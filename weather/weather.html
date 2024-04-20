@@ -70,9 +70,9 @@
                     <div class="card-body">
                         <h1 class="card-title pricing-card-title"><span id="temp2"></span><small class="text-body-secondary fw-light"> °C</small></h1>
                         <ul class="list-unstyled mt-3 mb-4">
-                            <li>TEMPERATURE IS <span id="temp"></span></li>
-                            <li>Max TEMPERATURE is <span id="max_temp"></span></li>
-                            <li>Min Temperature is <span id="min_temp"></span></li>
+                            <li>TEMPERATURE :<span id="temp"></span></li>
+                            <li>MAX-TEMP :<span id="max_temp"></span></li>
+                            <li>MIN-TEMP : <span id="min_temp"></span></li>                       
                         </ul>
                     </div>
                 </div>
@@ -83,11 +83,11 @@
                         <h4 class="my-0 fw-normal">HUMIDITY</h4>
                     </div>
                     <div class="card-body">
-                        <h1 class="card-title pricing-card-title"><span id="humidity2"></span><small class="text-body-secondary fw-light"> %</small></h1>
+                        <h1 class="card-title pricing-card-title"><span id="relativehumidity2"></span><small class="text-body-secondary fw-light"> %</small></h1>
                         <ul class="list-unstyled mt-3 mb-4">
-                            <li>cloud_pct is <span id="cloud_pct"></span></li>
-                            <li>feels_like is <span id="feels_like"></span></li>
-                            <li>humidity is <span id="humidity"></span></li>
+                            <li>precipitation : <span id="precipitation_probability"></span></li>
+                            <li>relativeHumidity :<span id="relative_humidity"></span></li>
+                            <li>VISIBILITY : <span id="visibility"></span></li>
                         </ul>
                     </div>
                 </div>
@@ -98,13 +98,12 @@
                         <h4 class="my-0 fw-normal">Wind Info </h4>
                     </div>
                     <div class="card-body">
-                        <h1 class="card-title pricing-card-title"><span id="wind_speed2"></span>
+                        <h1 class="card-title pricing-card-title"><span id="windspeed2"></span>
                             <small class="text-body-secondary fw-light"> KM/HR</small></h1>
                         <ul class="list-unstyled mt-3 mb-4">
-                            <li>wind_speed is <span id="wind_speed"></span></li>
-                            <li>wind_degrees is <span id="wind_degrees"></span></li>
-                            <li>sunrise is <span id="sunrise"></span></li>
-                            <li>sunset is <span id="sunset"></span></li>
+                            <li>wind_speed : <span id="windspeed"></span></li>
+                            <li>SUNRISE TIME: <span id="sunrise_time"></span></li>
+                            <li>SUNSET TIME :<span id="sunset_time"></span></li>
                         </ul>
                     </div>
                 </div>
@@ -116,14 +115,6 @@
 
 <div class="future-forecast">
     <div class="today" id="current-temp">
-        <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-        <div class="other">
-            <div class="day">Monday</div>
-            <div class="temp">Night - 25.6&#176; C</div>
-            <div class="temp">Day - 35.6&#176; C</div>
-        </div>
-    </div>
-
     <div class="weather-forecast" id="weather-forecast">
         <div class="weather-forecast-item">
             <div class="day">Tue</div>
@@ -158,7 +149,6 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="open api.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="weather.js"></script>
 </body>
