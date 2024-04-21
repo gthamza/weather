@@ -54,6 +54,7 @@ function processWeatherData(weatherData) {
     const hourly = weatherData.hourly;
     const time = hourly.time;
     const temperatureDataForHours = hourly.temperature_2m;
+    const weatherCode = hourly.weather_code
     const visibility = hourly.visibility;
     const windspeed = hourly.wind_speed_10m;
     const precipitation_probability = hourly.precipitation_probability;
@@ -81,6 +82,7 @@ function processWeatherData(weatherData) {
         weatherDataHours[`relative_humidity_2m_${i}`] = relative_humidity_2m[i];
         weatherDataHours[`temperature_2m_max_${i}`] = temperature_2m_max;
         weatherDataHours[`temperature_2m_min_${i}`] = temperature_2m_min;
+        weatherDataHours[`weather_code_${i}`] = weatherCode[i];
     }
     var index = -1;
     console.log("Time: " + getCurrentDatetime());
@@ -98,13 +100,40 @@ function processWeatherData(weatherData) {
     const forecastData = daily.temperature_2m_max.map((maxTemp, i) => {
         return {
             day: getDayFromDate(daily.sunrise[i]), // Assuming you have a function to get the day from date
-            weatherIcon: getWeatherIconCode(), // Assuming you have a function to get the weather icon code
+         // weatherIcon: getWeatherIconCode(), // Assuming you have a function to get the weather icon code
             minTemperature: daily.temperature_2m_min[i],
             maxTemperature: maxTemp
         };
     });
 
     return { weatherDataHours, sunriseTime, sunsetTime, forecastData };
+}
+
+function convertWeatherCode(weatherCode) {
+    var weatherCondition = "";
+        if(weatherCode == 0) {
+            weatherCondition = "Clear";
+        } else if (weatherCode > 0 && weatherCode <= 3) {
+            weatherCondition = "Cloudy";
+        } else if (weatherCode >= 4 && weatherCode <= 9) {
+            weatherCondition = "Haze";
+        } else if (weatherCode >= 10 && weatherCode <= 19 ) {
+            weatherCondition = "Mist";
+        } else if (weatherCode >= 20 && weatherCode <= 29) {
+            weatherCondition = "Rain";
+        } else if (weatherCode >= 30 && weatherCode <= 39) {
+            weatherCondition = "Storm";
+        } else if (weatherCode >= 40 && weatherCode <= 49) {
+            weatherCondition = "Fog";
+        } else if ((weatherCode >= 50 && weatherCode <= 67) || (weatherCode >= 80 && weatherCode <= 99)) {
+            weatherCondition = "Rain";
+        } else if (weatherCode >= 71 && weatherCode <= 77) {
+            weatherCondition = "Snow";
+        } else {
+            weatherCondition = "Error";
+        }
+
+        return weatherCondition;
 }
 
 function updateWeatherData(weatherData) {
@@ -117,6 +146,25 @@ function updateWeatherData(weatherData) {
     const minTemperature = weatherData.weatherDataHours[`temperature_2m_min_${currentIndex}`];
     const sunriseTime = weatherData.sunriseTime;
     const sunsetTime = weatherData.sunsetTime;
+    const weatherCode = weatherData.weatherDataHours[`weather_code_${currentIndex}`];
+    const weatherCodeday2 = weatherData.weatherDataHours[`weather_code_${currentIndex + 24}`];
+    const weatherCodeday3 = weatherData.weatherDataHours[`weather_code_${currentIndex + 48}`];
+    const weatherCodeday4 = weatherData.weatherDataHours[`weather_code_${currentIndex + 72}`];
+    const weatherCodeday5 = weatherData.weatherDataHours[`weather_code_${currentIndex + 96}`];
+    const weatherCodeday6 = weatherData.weatherDataHours[`weather_code_${currentIndex + 120}`];
+    const weatherCodeday7 = weatherData.weatherDataHours[`weather_code_${currentIndex + 144}`];
+
+
+
+    console.log("Weather Code: " +convertWeatherCode(weatherCode))
+    document.getElementById('weatherConditionImageDay2').src = `http://127.0.0.1:5500/weather/assets/\/${convertWeatherCode(weatherCode)}.png`
+    document.getElementById('weatherConditionImageDay3').src = `http://127.0.0.1:5500/weather/assets/\/${convertWeatherCode(weatherCodeday2)}.png`
+    document.getElementById('weatherConditionImageDay4').src = `http://127.0.0.1:5500/weather/assets/\/${convertWeatherCode(weatherCodeday3)}.png`
+    document.getElementById('weatherConditionImageDay5').src = `http://127.0.0.1:5500/weather/assets/\/${convertWeatherCode(weatherCodeday4)}.png`
+    document.getElementById('weatherConditionImageDay6').src = `http://127.0.0.1:5500/weather/assets/\/${convertWeatherCode(weatherCodeday5)}.png`
+    document.getElementById('weatherConditionImageDay7').src = `http://127.0.0.1:5500/weather/assets/\/${convertWeatherCode(weatherCodeday6)}.png`
+
+
 
     document.getElementById('temp').innerText = currentTemperature;
     document.getElementById('visibility').innerText = visibility;
@@ -131,6 +179,7 @@ function updateWeatherData(weatherData) {
     document.getElementById('precipitation_probability').innerText = precipitationProbability != null ? precipitationProbability.toString() : 'N/A';
     document.getElementById('sunrise_time').innerText = sunriseTime ? sunriseTime.toString() : '0';
     document.getElementById('sunset_time').innerText = sunsetTime ? sunsetTime.toString() : '0';
+
 }
 
 function getCurrentDatetime() {
@@ -170,9 +219,36 @@ searchForm.addEventListener('submit', async (event) => {
         alert('An error occurred while fetching weather data.');
     }
 });
+function showLocation(position) {
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
+    alert("Latitude : " + latitude + " Longitude: " + longitude);
+ }
+
+ function errorHandler(err) {
+    if(err.code == 1) {
+       alert("Error: Access is denied!");
+    } else if( err.code == 2) {
+       alert("Error: Position is unavailable!");
+    }
+ }
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(logPosition);
+  } else {
+    console.log("Geolocation is not supported by this browser.");
+  }
+  
+  function logPosition(position) {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    console.log("Current Position:", latitude, longitude);
+  }
+
 
 // Function to fetch weather data for the user's current location using geolocation
 async function fetchCurrentLocationWeather() {
+    console.log('Fetching current location weather');
+    console.log('Fetching weather data');
     try {
         // Get user's current position
         const position = await getCurrentPosition();
@@ -183,8 +259,8 @@ async function fetchCurrentLocationWeather() {
         const weatherData = await getWeatherData(cityName, latitude, longitude);
         if (weatherData) {
             updateWeatherData(weatherData);
-            updateForecast(weatherData.forecastData);
-            // Update UI to show current location
+    //        updateForecast(weatherData.forecastData);
+            //Update UI to show current location
             document.getElementById('cityname').innerText = cityName;
         } else {
             alert('Failed to fetch weather data for the current location.');
@@ -197,6 +273,7 @@ async function fetchCurrentLocationWeather() {
 
 // Function to get user's current position
 function getCurrentPosition() {
+    console.log('GetCurrentPosition');
     return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject);
     });
@@ -204,6 +281,7 @@ function getCurrentPosition() {
 
 // Function to reverse geocode coordinates to get location details
 async function reverseGeocode(latitude, longitude) {
+    console.log('ReverseGeocode');
     try {
         const response = await fetch(`https://geocode.xyz/${latitude},${longitude}?json=1`);
         if (!response.ok) {
@@ -220,7 +298,7 @@ async function reverseGeocode(latitude, longitude) {
 window.addEventListener('load', fetchCurrentLocationWeather);
 
 // Function to update the forecast
-function updateForecast(forecastData) {
+function updateWeatherCast(forecastData) {
     const forecastContainer = document.getElementById('weather-forecast');
     forecastContainer.innerHTML = ''; // Clear previous forecast
 
@@ -230,14 +308,13 @@ function updateForecast(forecastData) {
 
         const dayNameDiv = document.createElement('div');
         dayNameDiv.classList.add('day');
-        dayNameDiv.innerText = dayData.day;
+        dayNameDiv.innerText = getDayFromDate(dayData.date); // Assuming date field in dayData
         dayDiv.appendChild(dayNameDiv);
 
         const weatherIconImg = document.createElement('img');
-        const iconCode = dayData.weatherIcon; // Get weather icon code
-        weatherIconImg.src = `http://openweathermap.org/img/wn/${iconCode}.png`; // Construct icon URL
-        weatherIconImg.alt = 'weather icon';
+        weatherIconImg.alt = 'Weather Condition Image';
         weatherIconImg.classList.add('w-icon');
+         weatherIconImg.src = getWeatherIconUrl(dayData.weatherCode); // Assuming weatherCode field in dayData
         dayDiv.appendChild(weatherIconImg);
 
         const maxTempDiv = document.createElement('div');
@@ -254,6 +331,32 @@ function updateForecast(forecastData) {
     });
 }
 
+// Function to get weather icon URL based on the condition
+function getWeatherIconUrl(weatherCode) {
+    let weatherCondition = getWeatherIconCode(weatherCode);
+    let iconUrl = "assets/default.png"; // Default image URL
+
+    switch (weatherCondition) {
+        case "Clear":
+            iconUrl = "assets/clear.png";
+            break;
+        case "Cloudy":
+            iconUrl = "assets/cloudy.png";
+            break;
+        case "Rain":
+            iconUrl = "assets/rain.png";
+            break;
+        case "Snow":
+            iconUrl = "assets/snow.png";
+            break;
+        default:
+            // Default image or error handling
+            break;
+    }
+
+    return iconUrl;
+}
+
 // Function to get day from date
 function getDayFromDate(dateString) {
     const date = new Date(dateString);
@@ -261,23 +364,3 @@ function getDayFromDate(dateString) {
     return days[date.getDay()];
 }
 
-// Function to get weather icon code
-function getWeatherIconCode(weatherCode) {
-    // Define your mapping of weather codes to icon codes here
-    // For example:
-    const codeMap = {
-        '01d': '01d', // clear sky (day)
-        '01n': '01n', // clear sky (night)
-        '02d': '02d', // few clouds (day)
-        '02n': '02n', // few clouds (night)
-        // Add more mappings as needed
-    };
-    
-    // Check if the weather code exists in the map
-    if (codeMap.hasOwnProperty(weatherCode)) {
-        return `${codeMap[weatherCode]}@2x.png?${Date.now()}`; // Add cache-busting parameter
-    } else {
-        // Return a default icon code if the weather code is not found
-        return 'default';
-    }
-}
