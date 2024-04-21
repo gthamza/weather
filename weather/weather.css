@@ -295,3 +295,146 @@ body {
 .weather-forecast-item:hover img {
     transform: translate(-5px, -10px) rotate(-5deg) scale(1.1); 
 }
+/* Adjust overall layout */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f0f0f0; /* Light gray background */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Navbar styling */
+.navbar {
+    background-color: #4e4e4e;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.navbar-toggler-icon {
+    background-color: #fff;
+}
+
+/* Search bar */
+.form-control.search-bar {
+    border-radius: 20px;
+    background-color: #ffffff;
+    border: none;
+    padding-right: 38px;
+}
+
+.search-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Button styling */
+.btn-outline-success {
+    color: #000;
+    border-color: #000;
+}
+
+.btn-outline-success:hover {
+    color: #fff;
+    background-color: #000;
+    border-color: #000;
+}
+
+/* Table styling */
+.table {
+    background-color: rgba(0, 0, 0, 0.05);
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    text-align: center;
+}
+
+.table thead th {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #333;
+    font-weight: bold;
+}
+
+.table tbody tr {
+    background-color: #fff;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Future forecast styling */
+.future-forecast {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.today,
+.weather-forecast-item {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid #eee;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s;
+}
+
+.today:hover,
+.weather-forecast-item:hover {
+    transform: translateY(-5px);
+}
+
+.today .day,
+.weather-forecast-item .day {
+    padding: 5px 15px;
+    background: #3c3c44;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.today .temp,
+.weather-forecast-item .temp {
+    font-size: 18px;
+    padding-top: 15px;
+}
+
+.weather-forecast-item img {
+    max-width: 50px;
+    transition: transform 0.3s;
+}
+/* Adjustments for smaller screens */
+@media only screen and (max-width: 768px) {
+    .navbar {
+        padding: 10px;
+    }
+
+    .table th,
+    .table td {
+        font-size: 12px;
+    }
+}
+
+body {
+    background-image: url('weather.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}

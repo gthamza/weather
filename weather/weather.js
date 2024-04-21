@@ -1,6 +1,5 @@
 var currentIndex;
 
-
 async function getWeatherData(locationName, latitude, longitude) {
     try {
         let location;
@@ -72,7 +71,6 @@ function processWeatherData(weatherData) {
     const sunriseTime = daily.sunrise[0];
     const sunsetTime = daily.sunset[0];
 
-
     const weatherDataHours = {};
 
     for (let i = 0; i < temperatureDataForHours.length; i++) {
@@ -83,7 +81,6 @@ function processWeatherData(weatherData) {
         weatherDataHours[`relative_humidity_2m_${i}`] = relative_humidity_2m[i];
         weatherDataHours[`temperature_2m_max_${i}`] = temperature_2m_max;
         weatherDataHours[`temperature_2m_min_${i}`] = temperature_2m_min;
-
     }
     var index = -1;
     console.log("Time: " + getCurrentDatetime());
@@ -162,7 +159,6 @@ searchForm.addEventListener('submit', async (event) => {
         if (weatherData) {
             getCurrentDatetime();
             updateWeatherData(weatherData);
-            
             // Call updateForecast function with the forecast data
             updateForecast(weatherData.forecastData);
         } else {
@@ -175,130 +171,55 @@ searchForm.addEventListener('submit', async (event) => {
     }
 });
 
-// Add geolocation support
-function getLocation() {
-    if (navigator.geolocation) {
-        console.log("Getting user's location...");
-        navigator.geolocation.getCurrentPosition(showPosition, showError);
-    } else {
-        console.log("Geolocation is not supported by this browser.");
-    }
-}
-
-function showPosition(position) {
+// Function to fetch weather data for the user's current location using geolocation
+async function fetchCurrentLocationWeather() {
     try {
+        // Get user's current position
+        const position = await getCurrentPosition();
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
-        console.log('Latitude: ' + latitude + ' Longitude: ' + longitude);
-        getWeatherData(null, latitude, longitude);
+        const locationData = await reverseGeocode(latitude, longitude);
+        const cityName = locationData.city;
+        const weatherData = await getWeatherData(cityName, latitude, longitude);
+        if (weatherData) {
+            updateWeatherData(weatherData);
+            updateForecast(weatherData.forecastData);
+            // Update UI to show current location
+            document.getElementById('cityname').innerText = cityName;
+        } else {
+            alert('Failed to fetch weather data for the current location.');
+        }
     } catch (error) {
-        console.error('Error getting geolocation:', error);
+        console.error('Error fetching current location weather:', error);
+        alert('An error occurred while fetching current location weather data.');
     }
 }
 
-function showError(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            console.log("User denied the request for Geolocation.");
-            break;
-        case error.POSITION_UNAVAILABLE:
-            console.log("Location information is unavailable.");
-            break;
-        case error.TIMEOUT:
-            console.log("The request to get user location timed out.");
-            break;
-        case error.UNKNOWN_ERROR:
-            console.log("An unknown error occurred.");
-            break;
-    }
-}
-
-// Call getLocation() to get weather data for the user's current location
-getLocation();
-
-function getDayFromDate(dateString) {
-    const date = new Date(dateString);
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    return days[date.getDay()];
-}
-
-function updateCurrentWeather(currentWeather) {
-    document.getElementById('current-weather-icon').src = `http://openweathermap.org/img/wn/${currentWeather.weatherIcon}@2x.png`;
-    document.getElementById('current-day').innerText = currentWeather.day;
-    document.getElementById('current-night-temp').innerText += `${currentWeather.minTemperature}°C`;
-    document.getElementById('current-day-temp').innerText += `${currentWeather.maxTemperature}°C`;
-}
-
-// Function to update the forecast
-function updateForecast(forecastData) {
-    const forecastContainer = document.getElementById('weather-forecast');
-    forecastContainer.innerHTML = ''; // Clear previous forecast
-
-    forecastData.forEach(dayData => {
-        const dayDiv = document.createElement('div');
-        dayDiv.classList.add('weather-forecast-item');
-
-        const dayNameDiv = document.createElement('div');
-        dayNameDiv.classList.add('day');
-        dayNameDiv.innerText = dayData.day;
-        dayDiv.appendChild(dayNameDiv);
-
-        const weatherIconImg = document.createElement('img');
-        const iconCode = getWeatherIconCode(dayData.weatherIcon); // Get weather icon code
-        weatherIconImg.src = `http://openweathermap.org/img/wn/${iconCode}.png`; // Construct icon URL
-        weatherIconImg.alt = 'weather icon';
-        weatherIconImg.classList.add('w-icon');
-        dayDiv.appendChild(weatherIconImg);
-
-        const maxTempDiv = document.createElement('div');
-        maxTempDiv.classList.add('temp');
-        maxTempDiv.innerText = `Night - ${dayData.minTemperature}°C`;
-        dayDiv.appendChild(maxTempDiv);
-
-        const minTempDiv = document.createElement('div');
-        minTempDiv.classList.add('temp');
-        minTempDiv.innerText = `Day - ${dayData.maxTemperature}°C`;
-        dayDiv.appendChild(minTempDiv);
-
-        forecastContainer.appendChild(dayDiv);
+// Function to get user's current position
+function getCurrentPosition() {
+    return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
     });
 }
 
-function getWeatherIconCode(weatherCode) {
-    // Define your mapping of weather codes to icon codes here
-    // For example:
-    const codeMap = {
-        '01d': '01d', // clear sky (day)
-        '01n': '01n', // clear sky (night)
-        '02d': '02d', // few clouds (day)
-        '02n': '02n', // few clouds (night)
-        // Add more mappings as needed
-    };
-    
-    // Check if the weather code exists in the map
-    if (codeMap.hasOwnProperty(weatherCode)) {
-        return `${codeMap[weatherCode]}?${Date.now()}`; // Add cache-busting parameter
-    } else {
-        // Return a default icon code if the weather code is not found
-        return 'default';
-    }
-}
-function getWeatherIconCode(weatherCode) {
-    const codeMap = {
-        '01d': '01d',
-        '01n': '01n',
-        '02d': '02d',
-        '02n': '02n',
-        // Add more mappings as needed
-    };
-
-    if (codeMap.hasOwnProperty(weatherCode)) {
-        return `${codeMap[weatherCode]}@2x.png?${Date.now()}`; // Add cache-busting parameter
-    } else {
-        return 'default';
+// Function to reverse geocode coordinates to get location details
+async function reverseGeocode(latitude, longitude) {
+    try {
+        const response = await fetch(`https://geocode.xyz/${latitude},${longitude}?json=1`);
+        if (!response.ok) {
+            throw new Error('Failed to reverse geocode coordinates');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error reverse geocoding:', error);
+        throw error;
     }
 }
 
+// Call fetchCurrentLocationWeather when the page loads
+window.addEventListener('load', fetchCurrentLocationWeather);
+
+// Function to update the forecast
 function updateForecast(forecastData) {
     const forecastContainer = document.getElementById('weather-forecast');
     forecastContainer.innerHTML = ''; // Clear previous forecast
@@ -331,4 +252,32 @@ function updateForecast(forecastData) {
 
         forecastContainer.appendChild(dayDiv);
     });
+}
+
+// Function to get day from date
+function getDayFromDate(dateString) {
+    const date = new Date(dateString);
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    return days[date.getDay()];
+}
+
+// Function to get weather icon code
+function getWeatherIconCode(weatherCode) {
+    // Define your mapping of weather codes to icon codes here
+    // For example:
+    const codeMap = {
+        '01d': '01d', // clear sky (day)
+        '01n': '01n', // clear sky (night)
+        '02d': '02d', // few clouds (day)
+        '02n': '02n', // few clouds (night)
+        // Add more mappings as needed
+    };
+    
+    // Check if the weather code exists in the map
+    if (codeMap.hasOwnProperty(weatherCode)) {
+        return `${codeMap[weatherCode]}@2x.png?${Date.now()}`; // Add cache-busting parameter
+    } else {
+        // Return a default icon code if the weather code is not found
+        return 'default';
+    }
 }
