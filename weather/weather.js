@@ -364,3 +364,8 @@ function getDayFromDate(dateString) {
     return days[date.getDay()];
 }
 
+function getWeatherIconUrl(weatherCode) {
+    const iconName = convertWeatherCode(weatherCode);
+    return `/weather/assets/${iconName}.png`;
+}
+

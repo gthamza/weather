@@ -438,3 +438,52 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
 }
+/* General card hover effect */
+.card:hover {
+    transform: translateY(-5px) scale(1.005);
+    box-shadow: 0 24px 36px rgba(0, 0, 0, 0.11),
+                0 24px 46px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-out;
+  }
+  
+  .card-header {
+    transition: background-color 0.3s ease-out, color 0.3s ease-out;
+  }
+  
+  .card-body {
+    transition: background-color 0.3s ease-out, color 0.3s ease-out;
+  }
+  
+  /* Temperature card specific hover effects */
+  .card.temp-card:hover .card-header {
+    background-color: #ffd861;
+    color: #4C5656;
+  }
+  
+  .card.temp-card:hover .card-body {
+    background-color: #ffeeba;
+    color: #4C5656;
+  }
+  
+  /* Humidity card specific hover effects */
+  .card.humidity-card:hover .card-header {
+    background-color: #B8F9D3;
+    color: #4C5656;
+  }
+  
+  .card.humidity-card:hover .card-body {
+    background-color: #e2fced;
+    color: #4C5656;
+  }
+  
+  /* Wind Info card specific hover effects */
+  .card.wind-card:hover .card-header {
+    background-color: #CEB2FC;
+    color: #fff;
+  }
+  
+  .card.wind-card:hover .card-body {
+    background-color: #F0E7FF;
+    color: #fff;
+  }
+  
